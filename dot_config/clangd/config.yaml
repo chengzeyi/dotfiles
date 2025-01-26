@@ -1,0 +1,14 @@
+CompileFlags:                          # Tweak the parse settings
+  Add: [-xc++, -Wall, -ferror-limit=0] # treat all files as C++, enable more warnings
+  Remove: -W*                          # strip all other warning-related flags
+  Compiler: clang++                    # Change argv[0] of compile flags to `clang++`
+---
+If:                               # Apply this config conditionally
+  PathMatch: .*\.cu               # to all headers...
+# https://www.jetbrains.com/help/fleet/configure-cpp-clangd.html#clangd-configs
+CompileFlags:
+  Remove:
+    - -forward-unknown-to-host-compiler
+    - --generate-code*
+    - -rdc=*
+    - -Xcompiler*

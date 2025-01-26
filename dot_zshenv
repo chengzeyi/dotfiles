@@ -1,0 +1,38 @@
+alias proxy="export HTTP_PROXY=http://127.0.0.1:7890 \
+    HTTPS_PROXY=http://127.0.0.1:7890 \
+    FTP_PROXY=http://127.0.0.1:7890 \
+    ALL_PROXY=http://127.0.0.1:7890 \
+    http_proxy=http://127.0.0.1:7890 \
+    https_proxy=http://127.0.0.1:7890 \
+    ftp_proxy=http://127.0.0.1:7890 \
+    all_proxy=http://127.0.0.1:7890"
+
+alias unproxy="export HTTP_PROXY= \
+    HTTPS_PROXY= \
+    FTP_PROXY= \
+    ALL_PROXY= \
+    http_proxy= \
+    https_proxy= \
+    ftp_proxy= \
+    all_proxy="
+
+[[ -z "$GIT_CURL_VERBOSE" ]] && export GIT_CURL_VERBOSE=1
+
+[[ -z "$JAVA_HOME" ]] && export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
+
+[[ -z "BAT_THEME" ]] && export BAT_THEME="TwoDark"
+
+[[ -z "$GOPATH" ]] && export GOPATH="$HOME/go"
+[[ -z "$GOBIN" ]] && export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"
+
+[[ -z "$ANDROID_HOME" ]] && export ANDROID_HOME="$HOME/Library/Android/sdk"
+[[ -z "$ANDROID_SDK_ROOT" ]] && export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+[[ -z "$ANDROID_NDK_ROOT" ]] && export ANDROID_NDK_ROOT="$ANDROID_SDK_ROOT/ndk-bundle"
+
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/usr/local/anaconda3/bin:$PATH"
+# export PATH="/usr/local/opt/openjdk/bin:$PATH"
+
+export MANWIDTH=999
+[[ ! -f "$HOME/.cargo/env" ]] || source "$HOME/.cargo/env"

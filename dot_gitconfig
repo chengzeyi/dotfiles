@@ -1,0 +1,24 @@
+; [url "ssh://git@github.com/golang/"]
+; 	insteadOf = https://go.googlesource.com/
+; 	insteadOf = https://go.googlesource.com/
+; [url "ssh://git@github.com/"]
+; 	insteadOf = https://github.com/
+; 	insteadOf = http://github.com/
+[http]
+	postBuffer = 524288000
+[user]
+	email = ichengzeyi@gmail.com
+	name = chengzeyi
+[hub]
+	protocol = https
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[lfs]
+	pruneoffsetdays = 0
+; [url "https://hub.fgit.cf/"]
+; 	insteadOf = https://github.com/
+[credential]
+	helper = store
