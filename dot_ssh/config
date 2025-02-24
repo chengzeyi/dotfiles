@@ -1,5 +1,6 @@
 Host *
-    StrictHostKeyChecking no
+  StrictHostKeyChecking no
+  # ProxyCommand nc -X connect -x 127.0.0.1:7890 %h %p
 # Host github.com
 #   Hostname ssh.github.com
 #   Port 443
