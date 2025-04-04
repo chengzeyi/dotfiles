@@ -1,5 +1,17 @@
 [ -f ~/.pre_zshrc.sh ] && source ~/.pre_zshrc.sh
 
+if [ -x /opt/homebrew/bin/brew ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    FPATH=$(/opt/homebrew/bin/brew --prefix)/share/zsh/site-functions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+
+    export HOMEBREW_NO_AUTO_UPDATE=1
+    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+fi
+
 if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
     FPATH=/usr/local/share/zsh/site-functions:$FPATH
 fi
@@ -134,16 +146,6 @@ jdk() {
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-
-    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
-fi
-
 if type nvim &>/dev/null && [[ -z "$VIM" || "$VIM" != *"/vim" ]]; then
     export VISUAL="nvim"
     export EDITOR="nvim"
@@ -187,6 +189,12 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 command -v fzf &> /dev/null && alias f="fzf --bind '?:toggle-preview' --preview-window=up:60% --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
 
 command -v github-copilot-cli &> /dev/null && eval "$(github-copilot-cli alias -- "$0")"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(~/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
 
 # Start ssh-agent if it's not already running
 if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
