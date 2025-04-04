@@ -227,4 +227,18 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=/usr/NX/scripts/vgl:$PATH
 export VGL_DISPLAY=egl
 
+# Start ssh-agent if it's not already running
+if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
+    eval $(ssh-agent -s) > /dev/null
+
+    if command -v ssh-add &> /dev/null; then
+        # Add all private keys in the .ssh directory to the agent, excluding public keys
+        for key in ~/.ssh/id_*; do
+            if [[ -f "$key" && "$key" != *.pub ]]; then
+            	ssh-add "$key" 2>/dev/null
+            fi
+        done
+    fi
+fi
+
 [ -f ~/.post_bashrc.sh ] && source ~/.post_bashrc.sh

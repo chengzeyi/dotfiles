@@ -188,4 +188,18 @@ command -v fzf &> /dev/null && alias f="fzf --bind '?:toggle-preview' --preview-
 
 command -v github-copilot-cli &> /dev/null && eval "$(github-copilot-cli alias -- "$0")"
 
+# Start ssh-agent if it's not already running
+if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
+    eval $(ssh-agent -s) > /dev/null
+
+    if command -v ssh-add &> /dev/null; then
+        # Add all private keys in the .ssh directory to the agent, excluding public keys
+        for key in ~/.ssh/id_*; do
+            if [[ -f "$key" && "$key" != *.pub ]]; then
+            	ssh-add "$key" 2>/dev/null
+            fi
+        done
+    fi
+fi
+
 [ -f ~/.post_zshrc.sh ] && source ~/.post_zshrc.sh
