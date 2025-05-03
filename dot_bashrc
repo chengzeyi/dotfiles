@@ -241,4 +241,6 @@ if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
     fi
 fi
 
+alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
+
 [ -f ~/.post_bashrc.sh ] && source ~/.post_bashrc.sh
