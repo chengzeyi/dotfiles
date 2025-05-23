@@ -200,14 +200,14 @@ compinit
 if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent &> /dev/null; then
     eval $(ssh-agent -s) > /dev/null
 
-    if command -v ssh-add &> /dev/null; then
-        # Add all private keys in the .ssh directory to the agent, excluding public keys
-        for key in ~/.ssh/id_*; do
-            if [[ -f "$key" && "$key" != *.pub ]]; then
-            	ssh-add "$key" 2>/dev/null
-            fi
-        done
-    fi
+    # if command -v ssh-add &> /dev/null; then
+    #     # Add all private keys in the .ssh directory to the agent, excluding public keys
+    #     for key in ~/.ssh/id_*; do
+    #         if [[ -f "$key" && "$key" != *.pub ]]; then
+    #         	ssh-add "$key" 2>/dev/null
+    #         fi
+    #     done
+    # fi
 fi
 
 alias fixssh='eval $(tmux showenv -s SSH_AUTH_SOCK)'
