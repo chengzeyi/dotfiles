@@ -26,6 +26,16 @@ alias unproxy="export HTTP_PROXY= \
 [[ -z "$GOBIN" ]] && export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
 
+# Keep common CLI locations available to non-interactive shells (including Codex).
+typeset -U path PATH
+path=(
+    "$HOME/pyvenv/default/bin"
+    /opt/homebrew/bin
+    "$HOME/.fzf_Darwin/bin"
+    $path
+)
+export PATH
+
 [[ -z "$ANDROID_HOME" ]] && export ANDROID_HOME="$HOME/Library/Android/sdk"
 [[ -z "$ANDROID_SDK_ROOT" ]] && export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 [[ -z "$ANDROID_NDK_ROOT" ]] && export ANDROID_NDK_ROOT="$ANDROID_SDK_ROOT/ndk-bundle"
