@@ -1,5 +1,5 @@
 Host *
-  StrictHostKeyChecking no
+  StrictHostKeyChecking yes
   ServerAliveInterval 60
   AddKeysToAgent yes
   Compression yes
