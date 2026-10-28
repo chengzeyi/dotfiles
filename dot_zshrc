@@ -8,8 +8,6 @@ if [ -x /opt/homebrew/bin/brew ]; then
     compinit
 
     export HOMEBREW_NO_AUTO_UPDATE=1
-    export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-    export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 fi
 
 if (( ! ${fpath[(I)/usr/local/share/zsh/site-functions]} )); then
