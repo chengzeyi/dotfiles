@@ -187,7 +187,6 @@ fi
 # export PATH=/opt/nvidia/hpc_sdk/Linux_x86_64/23.9/comm_libs/mpi/bin:$PATH
 # export MANPATH=$MANPATH:/opt/nvidia/hpc_sdk/Linux_x86_64/23.9/comm_libs/mpi/man
 
-export GIT_CURL_VERBOSE=1
 export BAT_THEME="TwoDark"
 
 if type nvim &>/dev/null && [[ -z "$VIM" || "$VIM" != *"/vim" ]]; then

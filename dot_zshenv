@@ -16,8 +16,6 @@ alias unproxy="export HTTP_PROXY= \
     ftp_proxy= \
     all_proxy="
 
-[[ -z "$GIT_CURL_VERBOSE" ]] && export GIT_CURL_VERBOSE=1
-
 [[ -z "$JAVA_HOME" ]] && export JAVA_HOME=$(/usr/libexec/java_home 2>/dev/null)
 
 [[ -z "BAT_THEME" ]] && export BAT_THEME="TwoDark"
