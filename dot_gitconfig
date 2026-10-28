@@ -22,3 +22,9 @@
 ; 	insteadOf = https://github.com/
 [credential]
 	helper = store
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
